@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  #annotations:
+    #  cert-manager.io/cluster-issuer: letsencrypt
+  name: spiderfoot-ingress
+  namespace: spiderfoot
+spec:
+  #ingressClassName: nginx
+  rules:
+  - host: spiderfoot.local
+    http:
+      paths:
+      - backend:
+          service:
+            name: spiderfoot
+            port:
+              number: 5001
+        path: /
+        pathType: Prefix
+        # tls:
+    # - hosts:
+    #   - spiderfoot.local
+    #secretName: letsencrypt
+    #status:
+  #loadBalancer: {}
